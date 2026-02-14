@@ -1387,7 +1387,7 @@
             if (recipe.hops && recipe.hops.length > 0) {
                 recipe.hops.forEach(hop => {
                     const li = document.createElement('li');
-                    const amount = (hop.amount * 1000).toFixed(1);
+                    const amount = hop.amount.toFixed(1);
                     const timing = hop.use || 'Unknown';
                     const time = hop.time ? `${hop.time} min` : '';
                     li.innerHTML = `
