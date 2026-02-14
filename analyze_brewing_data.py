@@ -253,6 +253,9 @@ def main():
 
     # Save stats as JSON for HTML generation
     # Convert Counter and defaultdict to regular dict for JSON serialization
+    # Also include detailed batch data indexed by batch ID
+    detailed_batches_dict = {batch['_id']: batch for batch in batches}
+
     stats_json = {
         'total_batches': stats['total_batches'],
         'styles': dict(stats['styles']),
@@ -273,7 +276,8 @@ def main():
         'max_ibu': stats.get('max_ibu', 0),
         'avg_batch_size': stats.get('avg_batch_size', 0),
         'avg_efficiency': stats.get('avg_efficiency', 0),
-        'avg_color': stats.get('avg_color', 0)
+        'avg_color': stats.get('avg_color', 0),
+        'detailed_batches': detailed_batches_dict
     }
 
     with open('brewing_statistics.json', 'w') as f:

@@ -647,23 +647,19 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Loaded data:', data.total_batches, 'batches');
+
+                // Load detailed batch data from the statistics JSON
+                if (data.detailed_batches) {
+                    batchesDetailData = data.detailed_batches;
+                    console.log('Loaded detailed batch data:', Object.keys(batchesDetailData).length, 'batches');
+                }
+
                 initializeCharts(data);
                 populateIngredients(data);
                 populateTimeline(data);
                 updateStats(data);
             })
             .catch(error => console.error('Error loading data:', error));
-
-        // Load detailed batch data
-        fetch(`detailed_batches_all.json?v=${timestamp}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Loaded detailed batch data:', data.length, 'batches');
-                data.forEach(batch => {
-                    batchesDetailData[batch._id] = batch;
-                });
-            })
-            .catch(error => console.error('Error loading detailed batch data:', error));
 
         function updateStats(data) {
             document.getElementById('total-batches').textContent = data.total_batches;
