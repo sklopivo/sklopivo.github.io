@@ -2,9 +2,9 @@ name: Refresh Brewing Statistics
 
 on:
   workflow_dispatch:  # Manual trigger only
-  push:
-    branches:
-      - master  # Auto-trigger on push to master
+  #push:
+  #  branches:
+  #    - master  # Auto-trigger on push to master
   schedule:
     - cron: '0 0 * * 0'
 
