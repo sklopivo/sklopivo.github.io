@@ -295,11 +295,28 @@
             font-size: 1.2rem;
             color: var(--text-light);
             margin-bottom: 0.3rem;
+            font-weight: 600;
         }
 
         .timeline-style {
             color: var(--text-lighter);
-            font-style: italic;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-stats {
+            font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timeline-stats .stat-label {
+            color: var(--text-lighter);
+            font-size: 0.85rem;
+        }
+
+        .timeline-stats .stat-value {
+            color: var(--primary);
+            font-size: 0.85rem;
         }
 
         /* Footer */
@@ -939,14 +956,32 @@
         function populateTimeline(data) {
             const timeline = document.getElementById('timeline');
 
-            data.batch_timeline.forEach(batch => {
+            // Filter to only show Sklopivo brewer batches that are not in Planning status
+            const sklopivoBatches = data.batch_timeline.filter(batch =>
+                batch.brewer === 'Sklopivo' && batch.status !== 'Planning'
+            );
+            const reversedTimeline = [...sklopivoBatches].reverse();
+
+            reversedTimeline.forEach(batch => {
                 const item = document.createElement('div');
                 item.className = 'timeline-item';
                 item.onclick = () => openBatchModal(batch.batch_id);
+
+                // Format stats values (ABV is already in percentage format from API)
+                const abv = batch.abv ? batch.abv.toFixed(1) : '0.0';
+                const og = batch.og ? batch.og.toFixed(3) : '0.000';
+                const fg = batch.fg ? batch.fg.toFixed(3) : '0.000';
+                const ibu = batch.ibu ? Math.round(batch.ibu) : '0';
+
                 item.innerHTML = `
-                    <div class="timeline-date">${batch.date}</div>
-                    <div class="timeline-name">${batch.name}</div>
+                    <div class="timeline-name">${batch.name} #${batch.brew_number}</div>
                     <div class="timeline-style">${batch.style}</div>
+                    <div class="timeline-stats">
+                        <span class="stat-label">ABV</span> <span class="stat-value">${abv}%</span>
+                        <span class="stat-label">OG</span> <span class="stat-value">${og}</span>
+                        <span class="stat-label">FG</span> <span class="stat-value">${fg}</span>
+                        <span class="stat-label">IBU</span> <span class="stat-value">${ibu}</span>
+                    </div>
                 `;
                 timeline.appendChild(item);
             });

@@ -106,8 +106,7 @@
     "2023-11": 2,
     "2024-01": 1,
     "2023-09": 1,
-    "2024-02": 1,
-    "2024-03": 1,
+    "2024-03": 2,
     "2025-06": 1,
     "2026-02": 1,
     "2024-07": 1,
@@ -120,184 +119,394 @@
   },
   "batch_timeline": [
     {
-      "date": "2023-05-12",
+      "date": "2023-05-13",
       "name": "Sklopivo Wit",
       "style": "Witbier",
-      "batch_id": "5SpZuyZY8EUzK05HWLGgxYQl4t7gzm"
+      "batch_id": "5SpZuyZY8EUzK05HWLGgxYQl4t7gzm",
+      "brew_number": 26,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.73,
+      "og": 1.049423554,
+      "fg": 1.013,
+      "ibu": 16.4
     },
     {
-      "date": "2023-06-04",
+      "date": "2023-06-05",
       "name": "Sklopivo Wit",
       "style": "Witbier",
-      "batch_id": "At5dZgkxVSCkuaz0Nt0LGoA22TRarZ"
+      "batch_id": "At5dZgkxVSCkuaz0Nt0LGoA22TRarZ",
+      "brew_number": 27,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.99,
+      "og": 1.051236338,
+      "fg": 1.013,
+      "ibu": 16.1
     },
     {
       "date": "2023-09-22",
       "name": "Sklopivo Weizen",
       "style": "Weissbier",
-      "batch_id": "QtP9PERJpVwa6TKzQi4prqLDCWUo2I"
+      "batch_id": "QtP9PERJpVwa6TKzQi4prqLDCWUo2I",
+      "brew_number": 28,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.99,
+      "og": 1.050107485,
+      "fg": 1.012,
+      "ibu": 13.2
     },
     {
-      "date": "2023-11-02",
+      "date": "2023-11-03",
       "name": "Sklopivo Pils",
       "style": "German Pils",
-      "batch_id": "mv6QwqjTwl1JJuQvRV9XjP4j6NwqcA"
+      "batch_id": "mv6QwqjTwl1JJuQvRV9XjP4j6NwqcA",
+      "brew_number": 29,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.99,
+      "og": 1.047526516,
+      "fg": 1.01,
+      "ibu": 37.8
     },
     {
-      "date": "2023-11-23",
+      "date": "2023-11-24",
       "name": "Batlic Porter",
       "style": "Baltic Porter",
-      "batch_id": "K6EuN1U6JWDse2H4mmnZ3aeWM6SvDt"
+      "batch_id": "K6EuN1U6JWDse2H4mmnZ3aeWM6SvDt",
+      "brew_number": 30,
+      "brewer": "Sklopivo",
+      "status": "Archived",
+      "abv": 8.4,
+      "og": 1.083695046,
+      "fg": 1.02,
+      "ibu": 23.5
     },
     {
-      "date": "2024-01-26",
+      "date": "2024-01-27",
       "name": "Sklopivo NEIPA",
       "style": "Hazy IPA (New England / NEIPA)",
-      "batch_id": "Pa8CfElRRKPZZaqr76liFHrByZXR7G"
+      "batch_id": "Pa8CfElRRKPZZaqr76liFHrByZXR7G",
+      "brew_number": 32,
+      "brewer": "Sklopivo",
+      "status": "Archived",
+      "abv": 4.59,
+      "og": 1.049741843,
+      "fg": 1.015,
+      "ibu": 45.4
     },
     {
-      "date": "2024-02-29",
+      "date": "2024-03-01",
       "name": "Sklopivo Tripel",
       "style": "Belgian Tripel",
-      "batch_id": "Sf3Nd9Nj6eDwPY6QSxuE3q0gboZwE4"
+      "batch_id": "Sf3Nd9Nj6eDwPY6QSxuE3q0gboZwE4",
+      "brew_number": 33,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 8.93,
+      "og": 1.078354299,
+      "fg": 1.01,
+      "ibu": 29.5
     },
     {
-      "date": "2024-03-21",
+      "date": "2024-03-22",
       "name": "Porter",
       "style": "Baltic Porter",
-      "batch_id": "VeMV7JIeUV6y32kuzMoq79xwBbXa7I"
+      "batch_id": "VeMV7JIeUV6y32kuzMoq79xwBbXa7I",
+      "brew_number": 34,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 8.4,
+      "og": 1.083838722,
+      "fg": 1.02,
+      "ibu": 23.4
     },
     {
-      "date": "2024-05-02",
+      "date": "2024-05-03",
       "name": "Smadh IPA",
       "style": "American IPA",
-      "batch_id": "GCfNQ3selmU2LsMnPaPWX1YGLyAJyu"
+      "batch_id": "GCfNQ3selmU2LsMnPaPWX1YGLyAJyu",
+      "brew_number": 35,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.86,
+      "og": 1.049757094,
+      "fg": 1.013,
+      "ibu": 47.5
     },
     {
-      "date": "2024-05-23",
+      "date": "2024-05-24",
       "name": "Mead",
       "style": "Sweet Mead",
-      "batch_id": "AzBzGPv9Jn26vM6p3HXFSUl7bJqSWA"
+      "batch_id": "AzBzGPv9Jn26vM6p3HXFSUl7bJqSWA",
+      "brew_number": 36,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 14.57,
+      "og": 1.126431053,
+      "fg": 1.015,
+      "ibu": 0
     },
     {
-      "date": "2024-05-23",
+      "date": "2024-05-24",
       "name": "Sklopivo Smash Pils",
       "style": "Unknown",
-      "batch_id": "eNVXOu2sH7FBjVXmIJw7NGugPIgg6t"
+      "batch_id": "eNVXOu2sH7FBjVXmIJw7NGugPIgg6t",
+      "brew_number": 36,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.99,
+      "og": 1.045929626,
+      "fg": 1.008,
+      "ibu": 21.6
     },
     {
-      "date": "2024-07-22",
+      "date": "2024-07-23",
       "name": "Sklopivo Terapija - Voss",
       "style": "American IPA",
-      "batch_id": "cJorMl8wGa20yrslZvyjRW0ENvqIrD"
+      "batch_id": "cJorMl8wGa20yrslZvyjRW0ENvqIrD",
+      "brew_number": 37,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.07,
+      "og": 1.039158088,
+      "fg": 1.008,
+      "ibu": 126.9
     },
     {
-      "date": "2024-08-28",
+      "date": "2024-08-29",
       "name": "Pokorny APA",
       "style": "American Pale Ale",
-      "batch_id": "m2Rnp9LXmuCb0Q6TiXAdqaeUmgMYs8"
+      "batch_id": "m2Rnp9LXmuCb0Q6TiXAdqaeUmgMYs8",
+      "brew_number": 38,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.99,
+      "og": 1.046584376,
+      "fg": 1.009,
+      "ibu": 35.6
     },
     {
-      "date": "2024-11-07",
+      "date": "2024-11-08",
       "name": "Smash Mosaic",
       "style": "American Pale Ale",
-      "batch_id": "IvxT5oYP1P7FUKddC5wphqg4sCwWpI"
+      "batch_id": "IvxT5oYP1P7FUKddC5wphqg4sCwWpI",
+      "brew_number": 39,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.46,
+      "og": 1.043346211,
+      "fg": 1.009,
+      "ibu": 36.7
     },
     {
-      "date": "2024-11-07",
+      "date": "2024-11-08",
       "name": "Smash Galaxy",
       "style": "American Pale Ale",
-      "batch_id": "bZLZNHx9xGUWdtrqVeVAQl7omzIJZf"
+      "batch_id": "bZLZNHx9xGUWdtrqVeVAQl7omzIJZf",
+      "brew_number": 39,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.46,
+      "og": 1.043346211,
+      "fg": 1.009,
+      "ibu": 37.5
     },
     {
-      "date": "2024-11-21",
+      "date": "2024-11-22",
       "name": "Christmas Doppelbock",
       "style": "Doppelbock",
-      "batch_id": "DKdphSeBpu1Y481f3XYeJavinXF8Rj"
-    },
-    {
-      "date": "2024-12-27",
-      "name": "Smash Wolf",
-      "style": "American Pale Ale",
-      "batch_id": "hK2ZcccKU7fzWl77ACOl2sKACCmYGW"
+      "batch_id": "DKdphSeBpu1Y481f3XYeJavinXF8Rj",
+      "brew_number": 40,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 8.14,
+      "og": 1.074999514,
+      "fg": 1.013,
+      "ibu": 20.9
     },
     {
       "date": "2024-12-28",
+      "name": "Smash Wolf",
+      "style": "American Pale Ale",
+      "batch_id": "hK2ZcccKU7fzWl77ACOl2sKACCmYGW",
+      "brew_number": 41,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.99,
+      "og": 1.0476639,
+      "fg": 1.01,
+      "ibu": 37.1
+    },
+    {
+      "date": "2024-12-29",
       "name": "Raspberry Sour IPA",
       "style": "American Pale Ale",
-      "batch_id": "rzHaZsuEUp5i1r8nveWMEzoNwj3fmV"
+      "batch_id": "rzHaZsuEUp5i1r8nveWMEzoNwj3fmV",
+      "brew_number": 41,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.73,
+      "og": 1.0476639,
+      "fg": 1.012,
+      "ibu": 37.1
     },
     {
-      "date": "2025-01-30",
+      "date": "2025-01-31",
       "name": "NEIPA",
       "style": "Hazy IPA (New England / NEIPA)",
-      "batch_id": "gvpvSLaYF6ijxhziR2xJ5VeNiUwEWB"
+      "batch_id": "gvpvSLaYF6ijxhziR2xJ5VeNiUwEWB",
+      "brew_number": 42,
+      "brewer": "Sklopivo",
+      "status": "Archived",
+      "abv": 4.73,
+      "og": 1.053356225,
+      "fg": 1.017,
+      "ibu": 46.6
     },
     {
-      "date": "2025-02-15",
+      "date": "2025-02-16",
       "name": "Batch",
       "style": "Bohemian-Style Pilsener",
-      "batch_id": "Hxjk49hekmmvwimvSvARLq0Oh7e4P0"
+      "batch_id": "Hxjk49hekmmvwimvSvARLq0Oh7e4P0",
+      "brew_number": 1,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 5.38,
+      "og": 1.050000434,
+      "fg": 1.009,
+      "ibu": 29.4
     },
     {
-      "date": "2025-02-22",
+      "date": "2025-02-23",
       "name": "Bohemian Pilsner",
       "style": "Bohemian-Style Pilsener",
-      "batch_id": "Y8lywKTziRbm8vgJfLJwHBMhuMkefC"
+      "batch_id": "Y8lywKTziRbm8vgJfLJwHBMhuMkefC",
+      "brew_number": 43,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 5.38,
+      "og": 1.050006236,
+      "fg": 1.009,
+      "ibu": 30.1
     },
     {
-      "date": "2025-04-10",
+      "date": "2025-04-11",
       "name": "Weizen",
       "style": "Weissbier",
-      "batch_id": "BynL1kzTqNH6QlbmtjGEbFj8JX72Oo"
+      "batch_id": "BynL1kzTqNH6QlbmtjGEbFj8JX72Oo",
+      "brew_number": 44,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 5.64,
+      "og": 1.05233945,
+      "fg": 1.009,
+      "ibu": 10.5
     },
     {
-      "date": "2025-04-24",
+      "date": "2025-04-25",
       "name": "Tripel",
       "style": "Belgian Tripel",
-      "batch_id": "oYopoNV1qYDzEqQzBcK2eOsAJ2WCb9"
+      "batch_id": "oYopoNV1qYDzEqQzBcK2eOsAJ2WCb9",
+      "brew_number": 45,
+      "brewer": "Sklopivo",
+      "status": "Archived",
+      "abv": 8.93,
+      "og": 1.078243703,
+      "fg": 1.01,
+      "ibu": 29.5
     },
     {
-      "date": "2025-05-24",
+      "date": "2025-05-25",
       "name": "Batch",
       "style": "Hazy IPA (New England / NEIPA)",
-      "batch_id": "0ldZeqgfBZxHu7aBHXsH8rc8q15Xlp"
+      "batch_id": "0ldZeqgfBZxHu7aBHXsH8rc8q15Xlp",
+      "brew_number": 2,
+      "brewer": "Dominik doma",
+      "status": "Completed",
+      "abv": 5.64,
+      "og": 1.055571897,
+      "fg": 1.013,
+      "ibu": 30.2
     },
     {
-      "date": "2025-06-09",
+      "date": "2025-06-10",
       "name": "Batch",
       "style": "American Pale Ale",
-      "batch_id": "Y3P5uOYe3N6L6wgV1FotkXYKNjH81v"
+      "batch_id": "Y3P5uOYe3N6L6wgV1FotkXYKNjH81v",
+      "brew_number": 46,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 6.04,
+      "og": 1.055072731,
+      "fg": 1.009,
+      "ibu": 48.5
     },
     {
-      "date": "2025-07-23",
+      "date": "2025-07-24",
       "name": "Batch",
       "style": "Hazy IPA (New England / NEIPA)",
-      "batch_id": "iImzfkF7oyAbP9eQTq53xET5X5mbnZ"
+      "batch_id": "iImzfkF7oyAbP9eQTq53xET5X5mbnZ",
+      "brew_number": 47,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 6.04,
+      "og": 1.057604477,
+      "fg": 1.012,
+      "ibu": 45.3
     },
     {
-      "date": "2025-09-10",
+      "date": "2025-09-11",
       "name": "Bohemian Pilsner",
       "style": "Bohemian-Style Pilsener",
-      "batch_id": "hHTmSkKxY1tYSpViv2oYFeOeHlQNOz"
+      "batch_id": "hHTmSkKxY1tYSpViv2oYFeOeHlQNOz",
+      "brew_number": 48,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 4.99,
+      "og": 1.046729278,
+      "fg": 1.009,
+      "ibu": 28.1
     },
     {
       "date": "2025-10-22",
       "name": "Rasputin Russian Imperial Stout",
       "style": "American-Style Imperial Stout",
-      "batch_id": "DrCLHph1BnwaxNYaxhwHJaM6j0LZ3G"
+      "batch_id": "DrCLHph1BnwaxNYaxhwHJaM6j0LZ3G",
+      "brew_number": 49,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 9.19,
+      "og": 1.093128465,
+      "fg": 1.023,
+      "ibu": 72.3
     },
     {
       "date": "2026-01-10",
       "name": "NEIPA",
       "style": "Hazy IPA (New England / NEIPA)",
-      "batch_id": "j93jjSZtQLkPG6x1CvJbhiqTaO6zie"
+      "batch_id": "j93jjSZtQLkPG6x1CvJbhiqTaO6zie",
+      "brew_number": 50,
+      "brewer": "Sklopivo",
+      "status": "Completed",
+      "abv": 5.25,
+      "og": 1.052363231,
+      "fg": 1.012,
+      "ibu": 36.6
     },
     {
-      "date": "2026-02-12",
+      "date": "2026-02-13",
       "name": "Tripel / Sour",
       "style": "Belgian Tripel",
-      "batch_id": "ZrGLhkyfRZfVTgdrkdoD6bqYmckpdW"
+      "batch_id": "ZrGLhkyfRZfVTgdrkdoD6bqYmckpdW",
+      "brew_number": 51,
+      "brewer": "Sklopivo",
+      "status": "Planning",
+      "abv": 7.09,
+      "og": 1.067271972,
+      "fg": 1.013,
+      "ibu": 29.3
     }
   ],
   "grain_totals": {

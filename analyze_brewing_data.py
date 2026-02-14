@@ -58,7 +58,14 @@ def analyze_batches(batches: List[Dict[str, Any]]) -> Dict[str, Any]:
                     'date': dt.strftime('%Y-%m-%d'),
                     'name': batch_name,
                     'style': recipe.get('style', {}).get('name', 'Unknown'),
-                    'batch_id': batch.get('_id', '')
+                    'batch_id': batch.get('_id', ''),
+                    'brew_number': batch.get('batchNo', 0),
+                    'brewer': batch.get('brewer', 'Unknown'),
+                    'status': batch.get('status', 'Unknown'),
+                    'abv': recipe.get('abv', 0),
+                    'og': recipe.get('og', 0),
+                    'fg': recipe.get('fg', 0),
+                    'ibu': recipe.get('ibu', 0)
                 })
                 stats['yearly_brews'][dt.year] += 1
                 stats['monthly_brews'][dt.strftime('%Y-%m')] += 1
