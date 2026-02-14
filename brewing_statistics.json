@@ -1,0 +1,363 @@
+{
+  "total_batches": 32,
+  "styles": {
+    "Hazy IPA (New England / NEIPA)": 5,
+    "Witbier": 2,
+    "Sweet Mead": 1,
+    "Weissbier": 2,
+    "Doppelbock": 1,
+    "American-Style Imperial Stout": 1,
+    "American IPA": 2,
+    "Bohemian-Style Pilsener": 3,
+    "American Pale Ale": 6,
+    "Baltic Porter": 2,
+    "Belgian Tripel": 3,
+    "German Pils": 1
+  },
+  "grains": {
+    "Pale Ale Golden Promise": 2,
+    "Pale Ale Finest Maris Otter": 3,
+    "Wheat Malt, Pale": 12,
+    "Vienna Malt": 3,
+    "Pilsner": 16,
+    "Wheat Flaked": 1,
+    "Oats, Flaked": 6,
+    "Rice Hulls": 5,
+    "Honey": 1,
+    "Munich I": 6,
+    "Munich II": 2,
+    "Caraaroma": 4,
+    "Carafa II": 3,
+    "Pale Malt": 10,
+    "Caramunich I": 1,
+    "Crystal DRC": 1,
+    "Carafa I": 1,
+    "Melanoidin": 1,
+    "Roasted Barley": 1,
+    "Bohemian Pilsner": 3,
+    "Crystal T50": 3,
+    "Abbey Malt": 5,
+    "Barley, Flaked": 1,
+    "Wheat Malt": 1,
+    "Pilsner Malt": 1,
+    "Munich Malt": 1,
+    "Candi Sugar, Clear": 3,
+    "Carahell": 2
+  },
+  "hops": {
+    "Idaho #7": 10,
+    "Simcoe": 10,
+    "Saaz": 15,
+    "Tettnang": 1,
+    "Styrian Golding (Savinja Golding)": 6,
+    "Hallertauer Mittelfrueh": 4,
+    "Unknown": 1,
+    "Magnum": 3,
+    "Centennial": 4,
+    "Chinook": 6,
+    "Cascade": 14,
+    "Galaxy": 13,
+    "Mosaic": 5,
+    "Amarillo": 4,
+    "Citra": 5,
+    "Comet": 4,
+    "Styrian Wolf": 5,
+    "Nectaron": 5,
+    "Spalter Select": 2,
+    "Columbus": 1
+  },
+  "yeasts": {
+    "Lallemand (LalBrew)  - New England": 2,
+    "Mangrove Jack's M21 - Belgian Wit": 1,
+    "Lallemand - Lalvin EC-1118 - Lalvin EC-1118": 1,
+    "Lallemand (LalBrew)  - Munich Classic": 1,
+    "Fermentis W-34/70 - Saflager Lager": 4,
+    "Mangrove Jack's M42 - New World Strong Ale": 1,
+    "Fermentis S-04 - SafAle English Ale": 1,
+    "Fermentis US-05 - Safale American": 5,
+    "Fermentis S-189 - SafLager German Lager": 3,
+    "Fermentis S-33 - SafBrew Ale": 2,
+    "Wyeast Labs 3068 - Weihenstephan Weizen": 1,
+    "Mangrove Jack's M31 - Belgian Tripel": 3,
+    "Mangrove Jack's M44 - US West Coast Yeast": 1,
+    "Kveik Yeastery K.01 - K.01 Voss Kveik": 1,
+    "Fermentis S-23 - SafLager West European Lager": 1,
+    "Lallemand (LalBrew)  - Voss Kveik": 1
+  },
+  "brewers": {
+    "Dominik doma": 1,
+    "Sklopivo": 31
+  },
+  "yearly_brews": {
+    "2025": 10,
+    "2023": 5,
+    "2024": 13,
+    "2026": 2
+  },
+  "monthly_brews": {
+    "2025-05": 1,
+    "2023-05": 1,
+    "2023-06": 1,
+    "2024-05": 3,
+    "2025-04": 2,
+    "2024-11": 3,
+    "2025-10": 1,
+    "2025-02": 2,
+    "2023-11": 2,
+    "2024-01": 1,
+    "2023-09": 1,
+    "2024-03": 2,
+    "2025-06": 1,
+    "2026-02": 1,
+    "2024-07": 1,
+    "2025-01": 1,
+    "2025-09": 1,
+    "2024-12": 2,
+    "2025-07": 1,
+    "2026-01": 1,
+    "2024-08": 1
+  },
+  "batch_timeline": [
+    {
+      "date": "2023-05-13",
+      "name": "Sklopivo Wit",
+      "style": "Witbier",
+      "batch_id": "5SpZuyZY8EUzK05HWLGgxYQl4t7gzm"
+    },
+    {
+      "date": "2023-06-05",
+      "name": "Sklopivo Wit",
+      "style": "Witbier",
+      "batch_id": "At5dZgkxVSCkuaz0Nt0LGoA22TRarZ"
+    },
+    {
+      "date": "2023-09-22",
+      "name": "Sklopivo Weizen",
+      "style": "Weissbier",
+      "batch_id": "QtP9PERJpVwa6TKzQi4prqLDCWUo2I"
+    },
+    {
+      "date": "2023-11-03",
+      "name": "Sklopivo Pils",
+      "style": "German Pils",
+      "batch_id": "mv6QwqjTwl1JJuQvRV9XjP4j6NwqcA"
+    },
+    {
+      "date": "2023-11-24",
+      "name": "Batlic Porter",
+      "style": "Baltic Porter",
+      "batch_id": "K6EuN1U6JWDse2H4mmnZ3aeWM6SvDt"
+    },
+    {
+      "date": "2024-01-27",
+      "name": "Sklopivo NEIPA",
+      "style": "Hazy IPA (New England / NEIPA)",
+      "batch_id": "Pa8CfElRRKPZZaqr76liFHrByZXR7G"
+    },
+    {
+      "date": "2024-03-01",
+      "name": "Sklopivo Tripel",
+      "style": "Belgian Tripel",
+      "batch_id": "Sf3Nd9Nj6eDwPY6QSxuE3q0gboZwE4"
+    },
+    {
+      "date": "2024-03-22",
+      "name": "Porter",
+      "style": "Baltic Porter",
+      "batch_id": "VeMV7JIeUV6y32kuzMoq79xwBbXa7I"
+    },
+    {
+      "date": "2024-05-03",
+      "name": "Smadh IPA",
+      "style": "American IPA",
+      "batch_id": "GCfNQ3selmU2LsMnPaPWX1YGLyAJyu"
+    },
+    {
+      "date": "2024-05-24",
+      "name": "Mead",
+      "style": "Sweet Mead",
+      "batch_id": "AzBzGPv9Jn26vM6p3HXFSUl7bJqSWA"
+    },
+    {
+      "date": "2024-05-24",
+      "name": "Sklopivo Smash Pils",
+      "style": "Unknown",
+      "batch_id": "eNVXOu2sH7FBjVXmIJw7NGugPIgg6t"
+    },
+    {
+      "date": "2024-07-23",
+      "name": "Sklopivo Terapija - Voss",
+      "style": "American IPA",
+      "batch_id": "cJorMl8wGa20yrslZvyjRW0ENvqIrD"
+    },
+    {
+      "date": "2024-08-29",
+      "name": "Pokorny APA",
+      "style": "American Pale Ale",
+      "batch_id": "m2Rnp9LXmuCb0Q6TiXAdqaeUmgMYs8"
+    },
+    {
+      "date": "2024-11-08",
+      "name": "Smash Mosaic",
+      "style": "American Pale Ale",
+      "batch_id": "IvxT5oYP1P7FUKddC5wphqg4sCwWpI"
+    },
+    {
+      "date": "2024-11-08",
+      "name": "Smash Galaxy",
+      "style": "American Pale Ale",
+      "batch_id": "bZLZNHx9xGUWdtrqVeVAQl7omzIJZf"
+    },
+    {
+      "date": "2024-11-22",
+      "name": "Christmas Doppelbock",
+      "style": "Doppelbock",
+      "batch_id": "DKdphSeBpu1Y481f3XYeJavinXF8Rj"
+    },
+    {
+      "date": "2024-12-28",
+      "name": "Smash Wolf",
+      "style": "American Pale Ale",
+      "batch_id": "hK2ZcccKU7fzWl77ACOl2sKACCmYGW"
+    },
+    {
+      "date": "2024-12-29",
+      "name": "Raspberry Sour IPA",
+      "style": "American Pale Ale",
+      "batch_id": "rzHaZsuEUp5i1r8nveWMEzoNwj3fmV"
+    },
+    {
+      "date": "2025-01-31",
+      "name": "NEIPA",
+      "style": "Hazy IPA (New England / NEIPA)",
+      "batch_id": "gvpvSLaYF6ijxhziR2xJ5VeNiUwEWB"
+    },
+    {
+      "date": "2025-02-16",
+      "name": "Batch",
+      "style": "Bohemian-Style Pilsener",
+      "batch_id": "Hxjk49hekmmvwimvSvARLq0Oh7e4P0"
+    },
+    {
+      "date": "2025-02-23",
+      "name": "Bohemian Pilsner",
+      "style": "Bohemian-Style Pilsener",
+      "batch_id": "Y8lywKTziRbm8vgJfLJwHBMhuMkefC"
+    },
+    {
+      "date": "2025-04-11",
+      "name": "Weizen",
+      "style": "Weissbier",
+      "batch_id": "BynL1kzTqNH6QlbmtjGEbFj8JX72Oo"
+    },
+    {
+      "date": "2025-04-25",
+      "name": "Tripel",
+      "style": "Belgian Tripel",
+      "batch_id": "oYopoNV1qYDzEqQzBcK2eOsAJ2WCb9"
+    },
+    {
+      "date": "2025-05-25",
+      "name": "Batch",
+      "style": "Hazy IPA (New England / NEIPA)",
+      "batch_id": "0ldZeqgfBZxHu7aBHXsH8rc8q15Xlp"
+    },
+    {
+      "date": "2025-06-10",
+      "name": "Batch",
+      "style": "American Pale Ale",
+      "batch_id": "Y3P5uOYe3N6L6wgV1FotkXYKNjH81v"
+    },
+    {
+      "date": "2025-07-24",
+      "name": "Batch",
+      "style": "Hazy IPA (New England / NEIPA)",
+      "batch_id": "iImzfkF7oyAbP9eQTq53xET5X5mbnZ"
+    },
+    {
+      "date": "2025-09-11",
+      "name": "Bohemian Pilsner",
+      "style": "Bohemian-Style Pilsener",
+      "batch_id": "hHTmSkKxY1tYSpViv2oYFeOeHlQNOz"
+    },
+    {
+      "date": "2025-10-22",
+      "name": "Rasputin Russian Imperial Stout",
+      "style": "American-Style Imperial Stout",
+      "batch_id": "DrCLHph1BnwaxNYaxhwHJaM6j0LZ3G"
+    },
+    {
+      "date": "2026-01-10",
+      "name": "NEIPA",
+      "style": "Hazy IPA (New England / NEIPA)",
+      "batch_id": "j93jjSZtQLkPG6x1CvJbhiqTaO6zie"
+    },
+    {
+      "date": "2026-02-13",
+      "name": "Tripel / Sour",
+      "style": "Belgian Tripel",
+      "batch_id": "ZrGLhkyfRZfVTgdrkdoD6bqYmckpdW"
+    }
+  ],
+  "grain_totals": {
+    "Pale Ale Golden Promise": 5.97,
+    "Pale Ale Finest Maris Otter": 5.699999999999999,
+    "Wheat Malt, Pale": 22.41,
+    "Vienna Malt": 1.22,
+    "Pilsner": 103.48999999999998,
+    "Wheat Flaked": 5.0,
+    "Oats, Flaked": 9.0,
+    "Rice Hulls": 2.2,
+    "Honey": 3.5,
+    "Munich I": 26.718000000000004,
+    "Munich II": 0.8500000000000001,
+    "Caraaroma": 1.2000000000000002,
+    "Carafa II": 0.92,
+    "Pale Malt": 80.83,
+    "Caramunich I": 1.19,
+    "Crystal DRC": 1.19,
+    "Carafa I": 0.61,
+    "Melanoidin": 0.61,
+    "Roasted Barley": 0.29,
+    "Bohemian Pilsner": 15.232,
+    "Crystal T50": 1.35,
+    "Abbey Malt": 1.4200000000000002,
+    "Barley, Flaked": 1.0,
+    "Wheat Malt": 6.33,
+    "Pilsner Malt": 3.27,
+    "Munich Malt": 1.12,
+    "Candi Sugar, Clear": 2.26,
+    "Carahell": 1.0
+  },
+  "hop_totals": {
+    "Idaho #7": 600.0,
+    "Simcoe": 700.0,
+    "Saaz": 859.0,
+    "Tettnang": 70.0,
+    "Styrian Golding (Savinja Golding)": 276.1,
+    "Hallertauer Mittelfrueh": 330.9,
+    "Unknown": 40.0,
+    "Magnum": 184.5,
+    "Centennial": 245.0,
+    "Chinook": 265.0,
+    "Cascade": 830.0,
+    "Galaxy": 994.6,
+    "Mosaic": 575.0,
+    "Amarillo": 250.0,
+    "Citra": 350.0,
+    "Comet": 250.0,
+    "Styrian Wolf": 246.39999999999998,
+    "Nectaron": 250.0,
+    "Spalter Select": 100.0,
+    "Columbus": 56.8
+  },
+  "avg_abv": 0,
+  "min_abv": 0,
+  "max_abv": 0,
+  "avg_ibu": 34.75333333333333,
+  "min_ibu": 0,
+  "max_ibu": 126.9,
+  "avg_batch_size": 37.6,
+  "avg_efficiency": 0,
+  "avg_color": 0
+}

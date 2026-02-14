@@ -1,0 +1,19 @@
+# Brewfather API Credentials (.env file)
+.env
+
+# API Data Files (don't commit raw API data, only processed stats)
+detailed_batches_all.json
+brewfather_batches_all.json
+
+# Temporary files
+*.tmp
+.DS_Store
+.claude
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local readmes
+SETUP.md

@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍺 Sklopivo Brewing Showcase</title>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #080808;
+            --dark-gray: #131313;
+            --accent-bg: #0e0e0e;
+            --primary: #d9ff00;
+            --secondary: #00ff48;
+            --accent: #0ff;
+            --danger: #f90000;
+            --text-light: #bebebe;
+            --text-lighter: #d2d2d2;
+            --text-muted: #8d8d8d;
+        }
+
+        body {
+            font-family: 'Varela Round', BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--black);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(217, 255, 0, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 30px rgba(217, 255, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(217, 255, 0, 0.3);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(217, 255, 0, 0.7);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-lighter);
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--dark-gray) 0%, rgba(26, 26, 26, 0.8) 100%);
+            padding: 2rem;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid rgba(217, 255, 0, 0.2);
+            box-shadow: 0 .5em 1em -.125em rgba(255, 255, 255, .1), 0 0 0 1px rgba(255, 255, 255, .02);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 .5em 1em -.125em rgba(217, 255, 0, .3), 0 0 0 1px rgba(217, 255, 0, .2);
+        }
+
+        .stat-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .stat-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-lighter);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 6px;
+            margin: 2rem 0;
+            border: 1px solid rgba(217, 255, 0, 0.2);
+            box-shadow: 0 .5em 1em -.125em rgba(255, 255, 255, .1), 0 0 0 1px rgba(255, 255, 255, .02);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+        }
+
+        /* List Styling */
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ingredient-card {
+            background: var(--dark-gray);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 .5em 1em -.125em rgba(255, 255, 255, .1), 0 0 0 1px rgba(255, 255, 255, .02);
+        }
+
+        .ingredient-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .ingredient-list {
+            list-style: none;
+        }
+
+        .ingredient-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(217, 255, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ingredient-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ingredient-name {
+            color: var(--text-light);
+        }
+
+        .ingredient-count {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .timeline-item {
+            padding: 1.5rem;
+            background: var(--dark-gray);
+            border-left: 3px solid var(--primary);
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 .5em 1em -.125em rgba(255, 255, 255, .1), 0 0 0 1px rgba(255, 255, 255, .02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 .5em 1em -.125em rgba(217, 255, 0, .3), 0 0 0 1px rgba(217, 255, 0, .2);
+            background: linear-gradient(135deg, var(--dark-gray) 0%, rgba(26, 26, 26, 0.9) 100%);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-name {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-style {
+            color: var(--text-lighter);
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--dark-gray);
+            border-top: 3px solid var(--primary);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: var(--text-lighter);
+            font-size: 1.1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
+            margin: 2% auto;
+            padding: 3rem;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            box-shadow: 0 .5em 1em -.125em rgba(217, 255, 0, .5), 0 0 0 1px rgba(217, 255, 0, .3), 0 0 50px rgba(217, 255, 0, 0.5);
+        }
+
+        .modal-close {
+            color: var(--primary);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-lighter);
+        }
+
+        .modal-section {
+            margin: 2rem 0;
+        }
+
+        .modal-section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-stat {
+            background: rgba(26, 26, 26, 0.5);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid rgba(217, 255, 0, 0.2);
+            box-shadow: 0 .5em 1em -.125em rgba(255, 255, 255, .05), 0 0 0 1px rgba(255, 255, 255, .02);
+        }
+
+        .modal-stat-label {
+            color: var(--text-lighter);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-stat-value {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .modal-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-list li {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+            box-shadow: inset 0 .0625em .125em rgba(255, 255, 255, .05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-list-name {
+            color: var(--text-light);
+        }
+
+        .modal-list-amount {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ingredients-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="sklopivo_logo.png" alt="Sklopivo Logo" class="logo">
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Key Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card animate-in">
+                <div class="stat-icon">🍺</div>
+                <div class="stat-value" id="total-batches">32</div>
+                <div class="stat-label">Total Batches</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-icon">🎨</div>
+                <div class="stat-value" id="unique-styles">12</div>
+                <div class="stat-label">Unique Styles</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-icon">🌾</div>
+                <div class="stat-value" id="grain-types">28</div>
+                <div class="stat-label">Grain Types</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-icon">🌿</div>
+                <div class="stat-value" id="hop-varieties">20</div>
+                <div class="stat-label">Hop Varieties</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value" id="avg-ibu">34.8</div>
+                <div class="stat-label">Average IBU</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-icon">🧪</div>
+                <div class="stat-value" id="avg-batch-size">37.6L</div>
+                <div class="stat-label">Avg Batch Size</div>
+            </div>
+        </div>
+
+        <!-- Beer Styles Chart -->
+        <section class="section">
+            <h2 class="section-title">🎨 Beer Styles Distribution</h2>
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <canvas id="stylesChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brewing Timeline Chart -->
+        <section class="section">
+            <h2 class="section-title">📅 Brewing Timeline</h2>
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Ingredients -->
+        <section class="section">
+            <h2 class="section-title">🌾 Top Ingredients</h2>
+            <div class="ingredients-grid">
+                <!-- Grains -->
+                <div class="ingredient-card">
+                    <h3>🌾 Most Used Grains</h3>
+                    <ul class="ingredient-list" id="grains-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+
+                <!-- Hops -->
+                <div class="ingredient-card">
+                    <h3>🌿 Most Used Hops</h3>
+                    <ul class="ingredient-list" id="hops-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+
+                <!-- Yeasts -->
+                <div class="ingredient-card">
+                    <h3>🧫 Yeast Strains</h3>
+                    <ul class="ingredient-list" id="yeasts-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hops Usage Chart -->
+        <section class="section">
+            <h2 class="section-title">🌿 Hop Varieties Usage</h2>
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <canvas id="hopsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brewing History Timeline -->
+        <section class="section">
+            <h2 class="section-title">📆 Brewing History</h2>
+            <div class="timeline" id="timeline">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Batch Detail Modal -->
+    <div id="batchModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeBatchModal()">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalBatchName"></h2>
+                <p class="modal-subtitle" id="modalBatchStyle"></p>
+                <p class="modal-subtitle" id="modalBatchDate"></p>
+            </div>
+
+            <div class="modal-section" id="modalStatsSection">
+                <h3 class="modal-section-title">📊 Batch Statistics</h3>
+                <div class="modal-grid" id="modalStats"></div>
+            </div>
+
+            <div class="modal-section" id="modalGrainsSection">
+                <h3 class="modal-section-title">🌾 Grains & Fermentables</h3>
+                <ul class="modal-list" id="modalGrains"></ul>
+            </div>
+
+            <div class="modal-section" id="modalHopsSection">
+                <h3 class="modal-section-title">🌿 Hops</h3>
+                <ul class="modal-list" id="modalHops"></ul>
+            </div>
+
+            <div class="modal-section" id="modalYeastsSection">
+                <h3 class="modal-section-title">🧫 Yeasts</h3>
+                <ul class="modal-list" id="modalYeasts"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>🍺 Crafted with passion by Sklopivo | Data from Brewfather API</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+            "Good people drink good beer." - Hunter S. Thompson
+        </p>
+    </footer>
+
+    <script>
+        // Global variables
+        let batchesDetailData = {};
+
+        // Load brewing statistics data with cache busting
+        const timestamp = new Date().getTime();
+        fetch(`brewing_statistics.json?v=${timestamp}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Loaded data:', data.total_batches, 'batches');
+                initializeCharts(data);
+                populateIngredients(data);
+                populateTimeline(data);
+                updateStats(data);
+            })
+            .catch(error => console.error('Error loading data:', error));
+
+        // Load detailed batch data
+        fetch(`detailed_batches_all.json?v=${timestamp}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Loaded detailed batch data:', data.length, 'batches');
+                data.forEach(batch => {
+                    batchesDetailData[batch._id] = batch;
+                });
+            })
+            .catch(error => console.error('Error loading detailed batch data:', error));
+
+        function updateStats(data) {
+            document.getElementById('total-batches').textContent = data.total_batches;
+            document.getElementById('unique-styles').textContent = Object.keys(data.styles).length;
+            document.getElementById('grain-types').textContent = Object.keys(data.grains).length;
+            document.getElementById('hop-varieties').textContent = Object.keys(data.hops).length;
+            document.getElementById('avg-ibu').textContent = data.avg_ibu.toFixed(1);
+            document.getElementById('avg-batch-size').textContent = data.avg_batch_size.toFixed(1) + 'L';
+        }
+
+        function initializeCharts(data) {
+            const primaryColor = '#d9ff00';
+            const secondaryColor = '#00ff48';
+            const accentColor = '#0ff';
+            const textColor = '#bebebe';
+
+            Chart.defaults.color = textColor;
+            Chart.defaults.borderColor = 'rgba(217, 255, 0, 0.2)';
+
+            // Beer Styles Chart
+            const stylesCtx = document.getElementById('stylesChart').getContext('2d');
+            const styleLabels = Object.keys(data.styles);
+            const styleValues = Object.values(data.styles);
+
+            new Chart(stylesCtx, {
+                type: 'bar',
+                data: {
+                    labels: styleLabels,
+                    datasets: [{
+                        label: 'Number of Batches',
+                        data: styleValues,
+                        backgroundColor: primaryColor,
+                        borderColor: secondaryColor,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(10, 10, 10, 0.9)',
+                            titleColor: secondaryColor,
+                            bodyColor: textColor,
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                color: textColor
+                            },
+                            grid: {
+                                color: 'rgba(217, 255, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: textColor,
+                                maxRotation: 45,
+                                minRotation: 45
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Timeline Chart (Monthly Brews)
+            const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+            const monthsWithBrews = Object.keys(data.monthly_brews).sort();
+
+            // Generate complete month range
+            if (monthsWithBrews.length > 0) {
+                const firstMonth = monthsWithBrews[0];
+                const lastMonth = monthsWithBrews[monthsWithBrews.length - 1];
+
+                const [firstYear, firstMonthNum] = firstMonth.split('-').map(Number);
+                const [lastYear, lastMonthNum] = lastMonth.split('-').map(Number);
+
+                const allMonths = [];
+                const allValues = [];
+
+                let currentYear = firstYear;
+                let currentMonth = firstMonthNum;
+
+                while (currentYear < lastYear || (currentYear === lastYear && currentMonth <= lastMonthNum)) {
+                    const monthKey = `${currentYear}-${String(currentMonth).padStart(2, '0')}`;
+                    allMonths.push(monthKey);
+                    allValues.push(data.monthly_brews[monthKey] || 0);
+
+                    currentMonth++;
+                    if (currentMonth > 12) {
+                        currentMonth = 1;
+                        currentYear++;
+                    }
+                }
+
+                var months = allMonths;
+                var monthlyValues = allValues;
+            } else {
+                var months = [];
+                var monthlyValues = [];
+            }
+
+            new Chart(timelineCtx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Batches Brewed',
+                        data: monthlyValues,
+                        borderColor: primaryColor,
+                        backgroundColor: 'rgba(217, 255, 0, 0.2)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: secondaryColor,
+                        pointBorderColor: primaryColor,
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(10, 10, 10, 0.9)',
+                            titleColor: secondaryColor,
+                            bodyColor: textColor,
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                color: textColor
+                            },
+                            grid: {
+                                color: 'rgba(217, 255, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: textColor,
+                                maxRotation: 45,
+                                minRotation: 45
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Hops Chart
+            const hopsCtx = document.getElementById('hopsChart').getContext('2d');
+
+            // Sort hops by count and calculate percentages
+            const hopEntries = Object.entries(data.hops).sort((a, b) => b[1] - a[1]);
+            const totalHopUsage = hopEntries.reduce((sum, [_, count]) => sum + count, 0);
+
+            const hopNames = hopEntries.map(([name, count]) => {
+                const percentage = ((count / totalHopUsage) * 100).toFixed(1);
+                return `${name} (${percentage}%)`;
+            });
+            const hopCounts = hopEntries.map(([_, count]) => count);
+
+            new Chart(hopsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: hopNames,
+                    datasets: [{
+                        data: hopCounts,
+                        backgroundColor: [
+                            '#d9ff00', '#00ff48', '#0ff', '#b8ff00', '#80ff00',
+                            '#00ffaa', '#00ffdd', '#aaff00', '#66ff00', '#00ff88',
+                            '#00ffbb', '#ccff00', '#00ff66'
+                        ],
+                        borderColor: '#0a0a0a',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                color: textColor,
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(10, 10, 10, 0.9)',
+                            titleColor: secondaryColor,
+                            bodyColor: textColor,
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+        }
+
+        function populateIngredients(data) {
+            // Grains
+            const grainsList = document.getElementById('grains-list');
+            const topGrains = Object.entries(data.grains)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8);
+
+            topGrains.forEach(([name, count]) => {
+                const li = document.createElement('li');
+                const totalKg = data.grain_totals[name];
+                li.innerHTML = `
+                    <span class="ingredient-name">${name}</span>
+                    <span class="ingredient-count">${count}x (${totalKg.toFixed(1)}kg)</span>
+                `;
+                grainsList.appendChild(li);
+            });
+
+            // Hops
+            const hopsList = document.getElementById('hops-list');
+            const topHops = Object.entries(data.hops)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8);
+
+            topHops.forEach(([name, count]) => {
+                const li = document.createElement('li');
+                const totalG = data.hop_totals[name];
+                li.innerHTML = `
+                    <span class="ingredient-name">${name}</span>
+                    <span class="ingredient-count">${count}x (${totalG.toFixed(0)}g)</span>
+                `;
+                hopsList.appendChild(li);
+            });
+
+            // Yeasts
+            const yeastsList = document.getElementById('yeasts-list');
+            const topYeasts = Object.entries(data.yeasts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8);
+
+            topYeasts.forEach(([name, count]) => {
+                const li = document.createElement('li');
+                // Shorten yeast name if too long
+                const shortName = name.length > 40 ? name.substring(0, 37) + '...' : name;
+                li.innerHTML = `
+                    <span class="ingredient-name" title="${name}">${shortName}</span>
+                    <span class="ingredient-count">${count}x</span>
+                `;
+                yeastsList.appendChild(li);
+            });
+        }
+
+        function populateTimeline(data) {
+            const timeline = document.getElementById('timeline');
+
+            data.batch_timeline.forEach(batch => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.onclick = () => openBatchModal(batch.batch_id);
+                item.innerHTML = `
+                    <div class="timeline-date">${batch.date}</div>
+                    <div class="timeline-name">${batch.name}</div>
+                    <div class="timeline-style">${batch.style}</div>
+                `;
+                timeline.appendChild(item);
+            });
+        }
+
+        function openBatchModal(batchId) {
+            const batch = batchesDetailData[batchId];
+            if (!batch) {
+                console.error('Batch not found:', batchId);
+                return;
+            }
+
+            const recipe = batch.recipe || {};
+            const modal = document.getElementById('batchModal');
+
+            // Set header info
+            document.getElementById('modalBatchName').textContent = batch.name || 'Unknown Batch';
+            document.getElementById('modalBatchStyle').textContent = recipe.style?.name || 'Unknown Style';
+
+            const brewDate = batch.brewDate ? new Date(batch.brewDate).toLocaleDateString() : 'Unknown Date';
+            document.getElementById('modalBatchDate').textContent = `Brewed: ${brewDate}`;
+
+            // Statistics
+            const stats = document.getElementById('modalStats');
+            stats.innerHTML = '';
+
+            const statItems = [
+                { label: 'Batch Size', value: recipe.batchSize ? `${recipe.batchSize}L` : 'N/A' },
+                { label: 'ABV', value: batch.measuredAbv ? `${batch.measuredAbv.toFixed(1)}%` : (recipe.abv ? `${recipe.abv.toFixed(1)}% (est)` : 'N/A') },
+                { label: 'IBU', value: recipe.ibu ? recipe.ibu.toFixed(1) : 'N/A' },
+                { label: 'OG', value: batch.measuredOg ? batch.measuredOg.toFixed(3) : (recipe.og ? recipe.og.toFixed(3) : 'N/A') },
+                { label: 'FG', value: batch.measuredFg ? batch.measuredFg.toFixed(3) : (recipe.fg ? recipe.fg.toFixed(3) : 'N/A') },
+                { label: 'Color', value: recipe.estimatedColor ? `${recipe.estimatedColor.toFixed(1)} SRM` : 'N/A' },
+                { label: 'Efficiency', value: batch.efficiency ? `${batch.efficiency.toFixed(1)}%` : 'N/A' },
+                { label: 'Boil Time', value: recipe.equipment?.boilTime ? `${recipe.equipment.boilTime} min` : 'N/A' }
+            ];
+
+            statItems.forEach(stat => {
+                const div = document.createElement('div');
+                div.className = 'modal-stat';
+                div.innerHTML = `
+                    <div class="modal-stat-label">${stat.label}</div>
+                    <div class="modal-stat-value">${stat.value}</div>
+                `;
+                stats.appendChild(div);
+            });
+
+            // Grains
+            const grains = document.getElementById('modalGrains');
+            grains.innerHTML = '';
+            if (recipe.fermentables && recipe.fermentables.length > 0) {
+                recipe.fermentables.forEach(ferm => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span class="modal-list-name">${ferm.name}</span>
+                        <span class="modal-list-amount">${ferm.amount.toFixed(2)} kg (${((ferm.amount / recipe.fermentables.reduce((sum, f) => sum + f.amount, 0)) * 100).toFixed(1)}%)</span>
+                    `;
+                    grains.appendChild(li);
+                });
+            } else {
+                grains.innerHTML = '<li><span class="modal-list-name">No grain data available</span></li>';
+            }
+
+            // Hops
+            const hops = document.getElementById('modalHops');
+            hops.innerHTML = '';
+            if (recipe.hops && recipe.hops.length > 0) {
+                recipe.hops.forEach(hop => {
+                    const li = document.createElement('li');
+                    const amount = (hop.amount * 1000).toFixed(1);
+                    const timing = hop.use || 'Unknown';
+                    const time = hop.time ? `${hop.time} min` : '';
+                    li.innerHTML = `
+                        <span class="modal-list-name">${hop.name} - ${timing} ${time}</span>
+                        <span class="modal-list-amount">${amount}g</span>
+                    `;
+                    hops.appendChild(li);
+                });
+            } else {
+                hops.innerHTML = '<li><span class="modal-list-name">No hop data available</span></li>';
+            }
+
+            // Yeasts
+            const yeasts = document.getElementById('modalYeasts');
+            yeasts.innerHTML = '';
+            if (recipe.yeasts && recipe.yeasts.length > 0) {
+                recipe.yeasts.forEach(yeast => {
+                    const li = document.createElement('li');
+                    const lab = yeast.laboratory ? `${yeast.laboratory} ` : '';
+                    const productId = yeast.productId ? `${yeast.productId}` : '';
+                    li.innerHTML = `
+                        <span class="modal-list-name">${lab}${productId} - ${yeast.name}</span>
+                        <span class="modal-list-amount">${yeast.attenuation ? `${yeast.attenuation}%` : ''}</span>
+                    `;
+                    yeasts.appendChild(li);
+                });
+            } else {
+                yeasts.innerHTML = '<li><span class="modal-list-name">No yeast data available</span></li>';
+            }
+
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBatchModal() {
+            const modal = document.getElementById('batchModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('batchModal');
+            if (event.target === modal) {
+                closeBatchModal();
+            }
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
