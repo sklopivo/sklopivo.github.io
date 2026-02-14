@@ -277,6 +277,7 @@
             text-decoration: none;
             display: block;
             color: inherit;
+            position: relative;
         }
 
         .timeline-item:hover {
@@ -286,9 +287,12 @@
         }
 
         .timeline-date {
-            color: var(--primary);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            color: var(--text-lighter);
+            font-size: 0.85rem;
+            font-weight: normal;
         }
 
         .timeline-name {
@@ -317,6 +321,65 @@
         .timeline-stats .stat-value {
             color: var(--primary);
             font-size: 0.85rem;
+        }
+
+        /* Year sections */
+        .year-section {
+            margin-bottom: 2rem;
+        }
+
+        .year-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--dark-gray) 0%, rgba(26, 26, 26, 0.9) 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 .5em 1em -.125em rgba(255, 255, 255, .1), 0 0 0 1px rgba(255, 255, 255, .02);
+        }
+
+        .year-header:hover {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, var(--dark-gray) 100%);
+            box-shadow: 0 .5em 1em -.125em rgba(217, 255, 0, .2), 0 0 0 1px rgba(217, 255, 0, .1);
+        }
+
+        .year-header h3 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-grow: 1;
+        }
+
+        .year-header .batch-count {
+            color: var(--text-lighter);
+            font-size: 0.9rem;
+            margin-right: 1rem;
+        }
+
+        .year-header .toggle-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .year-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .year-batches {
+            max-height: 10000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .year-batches.collapsed {
+            max-height: 0;
+            opacity: 0;
         }
 
         /* Footer */
@@ -960,30 +1023,81 @@
             const sklopivoBatches = data.batch_timeline.filter(batch =>
                 batch.brewer === 'Sklopivo' && batch.status !== 'Planning'
             );
-            const reversedTimeline = [...sklopivoBatches].reverse();
 
-            reversedTimeline.forEach(batch => {
-                const item = document.createElement('div');
-                item.className = 'timeline-item';
-                item.onclick = () => openBatchModal(batch.batch_id);
+            // Group batches by year
+            const batchesByYear = {};
+            sklopivoBatches.forEach(batch => {
+                const year = batch.date.split('-')[0];
+                if (!batchesByYear[year]) {
+                    batchesByYear[year] = [];
+                }
+                batchesByYear[year].push(batch);
+            });
 
-                // Format stats values (ABV is already in percentage format from API)
-                const abv = batch.abv ? batch.abv.toFixed(1) : '0.0';
-                const og = batch.og ? batch.og.toFixed(3) : '0.000';
-                const fg = batch.fg ? batch.fg.toFixed(3) : '0.000';
-                const ibu = batch.ibu ? Math.round(batch.ibu) : '0';
+            // Get current year
+            const currentYear = new Date().getFullYear().toString();
 
-                item.innerHTML = `
-                    <div class="timeline-name">${batch.name} #${batch.brew_number}</div>
-                    <div class="timeline-style">${batch.style}</div>
-                    <div class="timeline-stats">
-                        <span class="stat-label">ABV</span> <span class="stat-value">${abv}%</span>
-                        <span class="stat-label">OG</span> <span class="stat-value">${og}</span>
-                        <span class="stat-label">FG</span> <span class="stat-value">${fg}</span>
-                        <span class="stat-label">IBU</span> <span class="stat-value">${ibu}</span>
-                    </div>
+            // Sort years in descending order (most recent first)
+            const years = Object.keys(batchesByYear).sort((a, b) => b - a);
+
+            years.forEach(year => {
+                const yearBatches = batchesByYear[year];
+                const isCurrentYear = year === currentYear;
+
+                // Create year section
+                const yearSection = document.createElement('div');
+                yearSection.className = 'year-section';
+
+                // Create year header
+                const yearHeader = document.createElement('div');
+                yearHeader.className = 'year-header' + (isCurrentYear ? '' : ' collapsed');
+                yearHeader.innerHTML = `
+                    <h3>${year}</h3>
+                    <span class="batch-count">${yearBatches.length} batch${yearBatches.length !== 1 ? 'es' : ''}</span>
+                    <span class="toggle-icon">▼</span>
                 `;
-                timeline.appendChild(item);
+
+                // Create batches container
+                const yearBatchesContainer = document.createElement('div');
+                yearBatchesContainer.className = 'year-batches' + (isCurrentYear ? '' : ' collapsed');
+
+                // Reverse batches within the year to show most recent first
+                const reversedBatches = [...yearBatches].reverse();
+
+                reversedBatches.forEach(batch => {
+                    const item = document.createElement('div');
+                    item.className = 'timeline-item';
+                    item.onclick = () => openBatchModal(batch.batch_id);
+
+                    // Format stats values (ABV is already in percentage format from API)
+                    const abv = batch.abv ? batch.abv.toFixed(1) : '0.0';
+                    const og = batch.og ? batch.og.toFixed(3) : '0.000';
+                    const fg = batch.fg ? batch.fg.toFixed(3) : '0.000';
+                    const ibu = batch.ibu ? Math.round(batch.ibu) : '0';
+
+                    item.innerHTML = `
+                        <div class="timeline-date">${batch.date}</div>
+                        <div class="timeline-name">${batch.name} #${batch.brew_number}</div>
+                        <div class="timeline-style">${batch.style}</div>
+                        <div class="timeline-stats">
+                            <span class="stat-label">ABV</span> <span class="stat-value">${abv}%</span>
+                            <span class="stat-label">OG</span> <span class="stat-value">${og}</span>
+                            <span class="stat-label">FG</span> <span class="stat-value">${fg}</span>
+                            <span class="stat-label">IBU</span> <span class="stat-value">${ibu}</span>
+                        </div>
+                    `;
+                    yearBatchesContainer.appendChild(item);
+                });
+
+                // Add click handler to toggle year section
+                yearHeader.onclick = () => {
+                    yearHeader.classList.toggle('collapsed');
+                    yearBatchesContainer.classList.toggle('collapsed');
+                };
+
+                yearSection.appendChild(yearHeader);
+                yearSection.appendChild(yearBatchesContainer);
+                timeline.appendChild(yearSection);
             });
         }
 
