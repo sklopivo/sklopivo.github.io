@@ -151,8 +151,22 @@
         }
 
         .stat-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--primary);
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 10px var(--primary));
         }
 
         .stat-value {
@@ -183,6 +197,30 @@
             letter-spacing: 2px;
             position: relative;
             padding-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 8px var(--primary));
         }
 
         .section-title::after {
@@ -231,6 +269,29 @@
             color: var(--primary);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .ingredient-icon {
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ingredient-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 6px var(--primary));
         }
 
         .ingredient-list {
@@ -576,42 +637,112 @@
         <!-- Key Statistics -->
         <div class="stats-grid">
             <div class="stat-card animate-in">
-                <div class="stat-icon">🍺</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <!-- Two barrels side by side -->
+                        <ellipse cx="7" cy="6" rx="3" ry="1.5"/>
+                        <path d="M4 6v10c0 1.66 1.34 3 3 3s3-1.34 3-3V6"/>
+                        <ellipse cx="7" cy="16" rx="3" ry="1.5"/>
+                        <path d="M4 11h6"/>
+                        <ellipse cx="17" cy="6" rx="3" ry="1.5"/>
+                        <path d="M14 6v10c0 1.66 1.34 3 3 3s3-1.34 3-3V6"/>
+                        <ellipse cx="17" cy="16" rx="3" ry="1.5"/>
+                        <path d="M14 11h6"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="total-batches">32</div>
                 <div class="stat-label">Total Batches</div>
             </div>
             <div class="stat-card animate-in">
-                <div class="stat-icon">🎨</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M8 12h8M12 8v8"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="unique-styles">12</div>
                 <div class="stat-label">Unique Styles</div>
             </div>
             <div class="stat-card animate-in">
-                <div class="stat-icon">🌾</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <!-- Grain flower head -->
+                        <line x1="12" y1="22" x2="12" y2="10"/>
+                        <ellipse cx="12" cy="5" rx="2" ry="3"/>
+                        <ellipse cx="10" cy="6" rx="1.5" ry="2.5"/>
+                        <ellipse cx="14" cy="6" rx="1.5" ry="2.5"/>
+                        <ellipse cx="11" cy="8" rx="1.5" ry="2"/>
+                        <ellipse cx="13" cy="8" rx="1.5" ry="2"/>
+                        <path d="M10 15l-2 1M14 15l2 1M10 18l-1.5 0.5M14 18l1.5 0.5"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="grain-types">28</div>
                 <div class="stat-label">Grain Types</div>
             </div>
             <div class="stat-card animate-in">
-                <div class="stat-icon">🌿</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <!-- Hop flower cone -->
+                        <line x1="12" y1="22" x2="12" y2="3"/>
+                        <path d="M12 3L8 7h8L12 3z"/>
+                        <ellipse cx="12" cy="8" rx="4" ry="1.5"/>
+                        <ellipse cx="12" cy="10" rx="4.5" ry="1.5"/>
+                        <ellipse cx="12" cy="12" rx="5" ry="1.5"/>
+                        <ellipse cx="12" cy="14" rx="4.5" ry="1.5"/>
+                        <ellipse cx="12" cy="16" rx="4" ry="1.5"/>
+                        <path d="M12 16L9 18M12 16L15 18"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="hop-varieties">20</div>
                 <div class="stat-label">Hop Varieties</div>
             </div>
             <div class="stat-card animate-in">
-                <div class="stat-icon">📊</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <!-- Fire/flame -->
+                        <path d="M12 2c-2 4-3 7-3 10 0 3.31 2.69 6 6 6s6-2.69 6-6c0-3-1-6-3-10-1 3-2 4-3 4s-2-1-3-4z"/>
+                        <path d="M12 22c-1.1 0-2-.9-2-2 0-1.5 1-2.5 2-3 1 .5 2 1.5 2 3 0 1.1-.9 2-2 2z"/>
+                        <path d="M9 12c-.5 1-.5 2 0 3"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="avg-ibu">34.8</div>
                 <div class="stat-label">Average IBU</div>
             </div>
             <div class="stat-card animate-in">
-                <div class="stat-icon">🧪</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <!-- Single barrel -->
+                        <ellipse cx="12" cy="5" rx="5" ry="2"/>
+                        <path d="M7 5v12c0 1.66 2.24 3 5 3s5-1.34 5-3V5"/>
+                        <ellipse cx="12" cy="17" rx="5" ry="2"/>
+                        <path d="M7 11h10"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="avg-batch-size">37.6L</div>
                 <div class="stat-label">Avg Batch Size</div>
             </div>
             <div class="stat-card animate-in">
-                <div class="stat-icon">🚰</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <!-- Laboratory flask -->
+                        <path d="M9 2h6M12 2v7"/>
+                        <path d="M9 9l-3 9c-.5 1.5 0 3 2 3h8c2 0 2.5-1.5 2-3l-3-9"/>
+                        <path d="M9 9h6"/>
+                        <path d="M10 14h4"/>
+                        <circle cx="10" cy="17" r="0.5"/>
+                        <circle cx="14" cy="16" r="0.5"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="total-volume">0L</div>
                 <div class="stat-label">Total Volume Brewed</div>
             </div>
             <div class="stat-card animate-in">
-                <div class="stat-icon">📅</div>
+                <div class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
                 <div class="stat-value" id="years-brewing">0</div>
                 <div class="stat-label">Years Brewing</div>
             </div>
@@ -619,7 +750,17 @@
 
         <!-- Beer Styles Chart -->
         <section class="section">
-            <h2 class="section-title">🎨 Beer Styles Distribution</h2>
+            <h2 class="section-title">
+                <span class="section-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l-5 9h10l-5-9z"/>
+                        <path d="M12 11l-5 9h10l-5-9z"/>
+                        <circle cx="12" cy="6" r="1.5"/>
+                        <circle cx="12" cy="15" r="1.5"/>
+                    </svg>
+                </span>
+                Beer Styles Distribution
+            </h2>
             <div class="chart-container">
                 <div class="chart-wrapper">
                     <canvas id="stylesChart"></canvas>
@@ -629,7 +770,15 @@
 
         <!-- Brewing Timeline Chart -->
         <section class="section">
-            <h2 class="section-title">📅 Brewing Timeline</h2>
+            <h2 class="section-title">
+                <span class="section-icon">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                        <path d="M3 10h18M8 2v4M16 2v4"/>
+                    </svg>
+                </span>
+                Brewing Timeline
+            </h2>
             <div class="chart-container">
                 <div class="chart-wrapper">
                     <canvas id="timelineChart"></canvas>
@@ -639,11 +788,27 @@
 
         <!-- Top Ingredients -->
         <section class="section">
-            <h2 class="section-title">🌾 Top Ingredients</h2>
+            <h2 class="section-title">
+                <span class="section-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4"/>
+                        <path d="M9 9h6M9 12h6M9 15h6"/>
+                    </svg>
+                </span>
+                Top Ingredients
+            </h2>
             <div class="ingredients-grid">
                 <!-- Grains -->
                 <div class="ingredient-card">
-                    <h3>🌾 Most Used Grains</h3>
+                    <h3>
+                        <span class="ingredient-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4"/>
+                                <path d="M9 9h6M9 12h6M9 15h6"/>
+                            </svg>
+                        </span>
+                        Most Used Grains
+                    </h3>
                     <ul class="ingredient-list" id="grains-list">
                         <!-- Populated by JS -->
                     </ul>
@@ -651,7 +816,17 @@
 
                 <!-- Hops -->
                 <div class="ingredient-card">
-                    <h3>🌿 Most Used Hops</h3>
+                    <h3>
+                        <span class="ingredient-icon">
+                            <svg viewBox="0 0 24 24">
+                                <ellipse cx="12" cy="7" rx="3" ry="5"/>
+                                <ellipse cx="12" cy="12" rx="3" ry="5"/>
+                                <ellipse cx="12" cy="17" rx="3" ry="5"/>
+                                <line x1="12" y1="2" x2="12" y2="22"/>
+                            </svg>
+                        </span>
+                        Most Used Hops
+                    </h3>
                     <ul class="ingredient-list" id="hops-list">
                         <!-- Populated by JS -->
                     </ul>
@@ -659,7 +834,20 @@
 
                 <!-- Yeasts -->
                 <div class="ingredient-card">
-                    <h3>🧫 Yeast Strains</h3>
+                    <h3>
+                        <span class="ingredient-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="8"/>
+                                <circle cx="12" cy="12" r="4"/>
+                                <path d="M12 4v4M12 16v4M4 12h4M16 12h4"/>
+                                <circle cx="8" cy="8" r="1.5"/>
+                                <circle cx="16" cy="8" r="1.5"/>
+                                <circle cx="8" cy="16" r="1.5"/>
+                                <circle cx="16" cy="16" r="1.5"/>
+                            </svg>
+                        </span>
+                        Yeast Strains
+                    </h3>
                     <ul class="ingredient-list" id="yeasts-list">
                         <!-- Populated by JS -->
                     </ul>
@@ -669,7 +857,17 @@
 
         <!-- Hops Usage Chart -->
         <section class="section">
-            <h2 class="section-title">🌿 Hop Varieties Usage</h2>
+            <h2 class="section-title">
+                <span class="section-icon">
+                    <svg viewBox="0 0 24 24">
+                        <ellipse cx="12" cy="7" rx="3" ry="5"/>
+                        <ellipse cx="12" cy="12" rx="3" ry="5"/>
+                        <ellipse cx="12" cy="17" rx="3" ry="5"/>
+                        <line x1="12" y1="2" x2="12" y2="22"/>
+                    </svg>
+                </span>
+                Hop Varieties Usage
+            </h2>
             <div class="chart-container">
                 <div class="chart-wrapper">
                     <canvas id="hopsChart"></canvas>
@@ -679,7 +877,17 @@
 
         <!-- Brewing History Timeline -->
         <section class="section">
-            <h2 class="section-title">📆 Brewing History</h2>
+            <h2 class="section-title">
+                <span class="section-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 12h18M3 6h18M3 18h18"/>
+                        <circle cx="6" cy="12" r="1.5"/>
+                        <circle cx="12" cy="12" r="1.5"/>
+                        <circle cx="18" cy="12" r="1.5"/>
+                    </svg>
+                </span>
+                Brewing History
+            </h2>
             <div class="timeline" id="timeline">
                 <!-- Populated by JS -->
             </div>
