@@ -605,6 +605,16 @@
                 <div class="stat-value" id="avg-batch-size">37.6L</div>
                 <div class="stat-label">Avg Batch Size</div>
             </div>
+            <div class="stat-card animate-in">
+                <div class="stat-icon">🚰</div>
+                <div class="stat-value" id="total-volume">0L</div>
+                <div class="stat-label">Total Volume Brewed</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-icon">📅</div>
+                <div class="stat-value" id="years-brewing">0</div>
+                <div class="stat-label">Years Brewing</div>
+            </div>
         </div>
 
         <!-- Beer Styles Chart -->
@@ -748,6 +758,10 @@
             document.getElementById('hop-varieties').textContent = Object.keys(data.hops).length;
             document.getElementById('avg-ibu').textContent = data.avg_ibu.toFixed(1);
             document.getElementById('avg-batch-size').textContent = data.avg_batch_size.toFixed(1) + 'L';
+
+            // New stats
+            document.getElementById('total-volume').textContent = data.total_volume.toFixed(0) + 'L';
+            document.getElementById('years-brewing').textContent = data.years_brewing.toFixed(1) + ' years';
         }
 
         function initializeCharts(data) {

@@ -162,6 +162,20 @@ def analyze_batches(batches: List[Dict[str, Any]]) -> Dict[str, Any]:
     if stats['color_srm']:
         stats['avg_color'] = sum(stats['color_srm']) / len(stats['color_srm'])
 
+    # Calculate total volume brewed
+    if stats['batch_sizes']:
+        stats['total_volume'] = sum(stats['batch_sizes'])
+    else:
+        stats['total_volume'] = 0
+
+    # Calculate years brewing (from first to last brew)
+    if len(stats['batch_timeline']) >= 2:
+        first_brew = datetime.strptime(stats['batch_timeline'][0]['date'], '%Y-%m-%d')
+        last_brew = datetime.strptime(stats['batch_timeline'][-1]['date'], '%Y-%m-%d')
+        stats['years_brewing'] = (last_brew - first_brew).days / 365.25
+    else:
+        stats['years_brewing'] = 0
+
     return stats
 
 def generate_markdown_report(stats: Dict[str, Any]) -> str:
@@ -284,6 +298,8 @@ def main():
         'avg_batch_size': stats.get('avg_batch_size', 0),
         'avg_efficiency': stats.get('avg_efficiency', 0),
         'avg_color': stats.get('avg_color', 0),
+        'total_volume': stats.get('total_volume', 0),
+        'years_brewing': stats.get('years_brewing', 0),
         'detailed_batches': detailed_batches_dict
     }
 

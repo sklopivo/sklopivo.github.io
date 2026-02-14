@@ -570,6 +570,8 @@
   "avg_batch_size": 37.6,
   "avg_efficiency": 0,
   "avg_color": 0,
+  "total_volume": 1128,
+  "years_brewing": 2.757015742642026,
   "detailed_batches": {
     "0ldZeqgfBZxHu7aBHXsH8rc8q15Xlp": {
       "_id": "0ldZeqgfBZxHu7aBHXsH8rc8q15Xlp",
