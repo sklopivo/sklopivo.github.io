@@ -1626,9 +1626,16 @@
                     const li = document.createElement('li');
                     const amount = hop.amount.toFixed(1);
                     const timing = hop.use || 'Unknown';
-                    const time = hop.time ? `${hop.time} min` : '';
+
+                    // Handle different time units (minutes for boil/aroma, days for dry hop)
+                    let time = '';
+                    if (hop.time) {
+                        const unit = hop.timeUnit === 'day' ? (hop.time === 1 ? 'day' : 'days') : 'min';
+                        time = `${hop.time} ${unit}`;
+                    }
+
                     li.innerHTML = `
-                        <span class="modal-list-name">${hop.name} - ${timing} ${time}</span>
+                        <span class="modal-list-name">${hop.name} - ${timing}${time ? ' @ ' + time : ''}</span>
                         <span class="modal-list-amount">${amount}g</span>
                     `;
                     hops.appendChild(li);
