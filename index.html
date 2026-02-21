@@ -509,6 +509,83 @@
             color: var(--secondary);
         }
 
+        .modal-share-btn {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Varela Round', sans-serif;
+            z-index: 10;
+        }
+
+        .modal-share-btn:hover {
+            background: var(--primary);
+            color: var(--background);
+            box-shadow: 0 0 15px rgba(217, 255, 0, 0.5);
+        }
+
+        .modal-share-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .share-tooltip {
+            position: absolute;
+            bottom: 3.5rem;
+            right: 0;
+            background: var(--primary);
+            color: var(--background);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .share-tooltip.show {
+            opacity: 1;
+        }
+
+        /* Responsive share button */
+        @media (max-width: 768px) {
+            .modal-share-btn {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .modal-share-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .share-tooltip {
+                bottom: 3rem;
+            }
+
+            .modal-close {
+                right: 1rem;
+            }
+        }
+
         .modal-header {
             margin-bottom: 2rem;
             border-bottom: 2px solid var(--primary);
@@ -927,6 +1004,17 @@
     <div id="batchModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeBatchModal()">&times;</span>
+            <button class="modal-share-btn" onclick="shareBatch()" title="Copy link to share">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="18" cy="5" r="3"/>
+                    <circle cx="6" cy="12" r="3"/>
+                    <circle cx="18" cy="19" r="3"/>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+                Share
+                <span class="share-tooltip" id="shareTooltip">Link copied!</span>
+            </button>
             <div class="modal-header">
                 <h2 class="modal-title" id="modalBatchName"></h2>
                 <p class="modal-subtitle" id="modalBatchStyle"></p>
@@ -1025,8 +1113,38 @@
                 populateIngredients(data);
                 populateTimeline(data);
                 updateStats(data);
+
+                // Handle deep linking - check if URL has a batch hash
+                checkUrlHash();
             })
             .catch(error => console.error('Error loading data:', error));
+
+        // Handle URL hash changes (browser back/forward buttons)
+        window.addEventListener('hashchange', function() {
+            checkUrlHash();
+        });
+
+        function checkUrlHash() {
+            const hash = window.location.hash;
+
+            // Check if hash is for a batch (format: #batch/BATCH_ID)
+            if (hash.startsWith('#batch/')) {
+                const batchId = hash.substring(7); // Remove '#batch/' prefix
+
+                // Open the modal if batch exists (don't update hash again)
+                if (batchesDetailData[batchId]) {
+                    openBatchModal(batchId, false);
+                } else {
+                    console.error('Batch not found in URL:', batchId);
+                }
+            } else if (hash === '') {
+                // No hash, close modal if it's open (without clearing hash again)
+                const modal = document.getElementById('batchModal');
+                if (modal.classList.contains('active')) {
+                    closeBatchModal(false);
+                }
+            }
+        }
 
         function updateStats(data) {
             document.getElementById('total-batches').textContent = data.total_batches;
@@ -1423,11 +1541,16 @@
             return 'rgb(40, 30, 20)'; // Black fallback
         }
 
-        function openBatchModal(batchId) {
+        function openBatchModal(batchId, updateHash = true) {
             const batch = batchesDetailData[batchId];
             if (!batch) {
                 console.error('Batch not found:', batchId);
                 return;
+            }
+
+            // Update URL hash for deep linking (unless we're already loading from hash)
+            if (updateHash) {
+                window.location.hash = `batch/${batchId}`;
             }
 
             const recipe = batch.recipe || {};
@@ -1537,10 +1660,34 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeBatchModal() {
+        function closeBatchModal(clearHash = true) {
             const modal = document.getElementById('batchModal');
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+
+            // Clear URL hash when closing modal manually
+            if (clearHash && window.location.hash.startsWith('#batch/')) {
+                history.pushState(null, null, window.location.pathname);
+            }
+        }
+
+        function shareBatch() {
+            // Copy current URL to clipboard
+            const url = window.location.href;
+
+            navigator.clipboard.writeText(url).then(() => {
+                // Show tooltip confirmation
+                const tooltip = document.getElementById('shareTooltip');
+                tooltip.classList.add('show');
+
+                // Hide tooltip after 2 seconds
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy URL:', err);
+                alert('Link: ' + url);
+            });
         }
 
         // Close modal when clicking outside
