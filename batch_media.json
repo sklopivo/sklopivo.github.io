@@ -1,0 +1,20 @@
+{
+  "_readme": "Add Instagram posts and other media for your batches. Use batch ID as the key (found in URL: #batch/BATCH_ID)",
+  "_example": {
+    "BATCH_ID_HERE": {
+      "instagram": [
+        {
+          "url": "https://www.instagram.com/p/POST_ID/",
+          "caption": "Optional caption describing this post"
+        }
+      ],
+      "images": [
+        {
+          "url": "images/brew-photo.jpg",
+          "caption": "Optional image caption",
+          "alt": "Alt text for accessibility"
+        }
+      ]
+    }
+  }
+}

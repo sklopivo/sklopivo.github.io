@@ -683,6 +683,61 @@
             color: var(--text-light);
         }
 
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+            gap: 1.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .media-item {
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(217, 255, 0, 0.2);
+            overflow: hidden;
+            box-shadow: 0 .5em 1em -.125em rgba(255, 255, 255, .05);
+        }
+
+        .instagram-embed {
+            width: 100%;
+            height: 700px;
+            border: none;
+            background: rgba(26, 26, 26, 0.5);
+        }
+
+        .media-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .media-caption {
+            padding: 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(217, 255, 0, 0.1);
+        }
+
+        .instagram-link {
+            display: inline-block;
+            margin: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        .instagram-link:hover {
+            background: var(--primary);
+            color: var(--background);
+            box-shadow: 0 0 15px rgba(217, 255, 0, 0.5);
+        }
+
         .modal-list-amount {
             color: var(--primary);
             font-weight: bold;
@@ -1081,6 +1136,20 @@
                 </h3>
                 <ul class="modal-list" id="modalYeasts"></ul>
             </div>
+
+            <div class="modal-section" id="modalMediaSection" style="display: none;">
+                <h3 class="modal-section-title">
+                    <span class="modal-section-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <path d="M21 15l-5-5L5 21"/>
+                        </svg>
+                    </span>
+                    Brew Gallery
+                </h3>
+                <div id="modalMedia"></div>
+            </div>
         </div>
     </div>
 
@@ -1095,6 +1164,7 @@
     <script>
         // Global variables
         let batchesDetailData = {};
+        let batchMediaData = {};
 
         // Load brewing statistics data with cache busting
         const timestamp = new Date().getTime();
@@ -1114,8 +1184,23 @@
                 populateTimeline(data);
                 updateStats(data);
 
-                // Handle deep linking - check if URL has a batch hash
-                checkUrlHash();
+                // Load batch media configuration (optional)
+                fetch(`batch_media.json?v=${timestamp}`)
+                    .then(response => response.json())
+                    .then(mediaData => {
+                        // Remove helper fields and store only batch data
+                        const { _readme, _example, ...batchData } = mediaData;
+                        batchMediaData = batchData;
+                        console.log('Loaded media for', Object.keys(batchMediaData).length, 'batches');
+                    })
+                    .catch(error => {
+                        // Media file is optional, so just log if not found
+                        console.log('No batch media file found (optional)');
+                    })
+                    .finally(() => {
+                        // Handle deep linking - check if URL has a batch hash
+                        checkUrlHash();
+                    });
             })
             .catch(error => console.error('Error loading data:', error));
 
@@ -1669,6 +1754,56 @@
                 });
             } else {
                 yeasts.innerHTML = '<li><span class="modal-list-name">No yeast data available</span></li>';
+            }
+
+            // Media (Instagram, images)
+            const mediaSection = document.getElementById('modalMediaSection');
+            const mediaContainer = document.getElementById('modalMedia');
+
+            if (batchMediaData[batchId]) {
+                const media = batchMediaData[batchId];
+                mediaSection.style.display = 'block';
+                mediaContainer.innerHTML = '';
+
+                const gridDiv = document.createElement('div');
+                gridDiv.className = 'media-grid';
+
+                // Instagram posts
+                if (media.instagram && media.instagram.length > 0) {
+                    media.instagram.forEach(post => {
+                        const mediaItem = document.createElement('div');
+                        mediaItem.className = 'media-item';
+
+                        const postUrl = typeof post === 'string' ? post : post.url;
+                        const embedUrl = postUrl.replace(/\/$/, '') + '/embed/';
+
+                        mediaItem.innerHTML = `
+                            <iframe class="instagram-embed" src="${embedUrl}" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                            ${post.caption ? `<div class="media-caption">${post.caption}</div>` : ''}
+                        `;
+
+                        gridDiv.appendChild(mediaItem);
+                    });
+                }
+
+                // Custom images
+                if (media.images && media.images.length > 0) {
+                    media.images.forEach(image => {
+                        const mediaItem = document.createElement('div');
+                        mediaItem.className = 'media-item';
+
+                        mediaItem.innerHTML = `
+                            <img src="${image.url}" alt="${image.alt || 'Brew photo'}" class="media-image">
+                            ${image.caption ? `<div class="media-caption">${image.caption}</div>` : ''}
+                        `;
+
+                        gridDiv.appendChild(mediaItem);
+                    });
+                }
+
+                mediaContainer.appendChild(gridDiv);
+            } else {
+                mediaSection.style.display = 'none';
             }
 
             // Show modal
