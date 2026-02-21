@@ -1608,9 +1608,18 @@
             if (recipe.fermentables && recipe.fermentables.length > 0) {
                 recipe.fermentables.forEach(ferm => {
                     const li = document.createElement('li');
+
+                    // Show small amounts (< 0.1 kg) in grams for better readability
+                    let amountDisplay;
+                    if (ferm.amount < 0.1) {
+                        amountDisplay = `${(ferm.amount * 1000).toFixed(0)}g`;
+                    } else {
+                        amountDisplay = `${ferm.amount.toFixed(2)} kg`;
+                    }
+
                     li.innerHTML = `
                         <span class="modal-list-name">${ferm.name}</span>
-                        <span class="modal-list-amount">${ferm.amount.toFixed(2)} kg (${((ferm.amount / recipe.fermentables.reduce((sum, f) => sum + f.amount, 0)) * 100).toFixed(1)}%)</span>
+                        <span class="modal-list-amount">${amountDisplay} (${((ferm.amount / recipe.fermentables.reduce((sum, f) => sum + f.amount, 0)) * 100).toFixed(1)}%)</span>
                     `;
                     grains.appendChild(li);
                 });
