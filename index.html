@@ -701,7 +701,7 @@
 
         .instagram-embed {
             width: 100%;
-            height: 700px;
+            height: 900px;
             border: none;
             background: rgba(26, 26, 26, 0.5);
         }
@@ -1778,7 +1778,7 @@
                         const embedUrl = postUrl.replace(/\/$/, '') + '/embed/';
 
                         mediaItem.innerHTML = `
-                            <iframe class="instagram-embed" src="${embedUrl}" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                            <iframe class="instagram-embed" src="${embedUrl}" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
                             ${post.caption ? `<div class="media-caption">${post.caption}</div>` : ''}
                         `;
 
