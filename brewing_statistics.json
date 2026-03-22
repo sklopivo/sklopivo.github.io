@@ -504,7 +504,7 @@
       "batch_id": "ZrGLhkyfRZfVTgdrkdoD6bqYmckpdW",
       "brew_number": 51,
       "brewer": "Sklopivo",
-      "status": "Fermenting",
+      "status": "Conditioning",
       "abv": 7.09,
       "og": 1.067271972,
       "fg": 1.013,
@@ -21413,7 +21413,7 @@
       "_id": "ZrGLhkyfRZfVTgdrkdoD6bqYmckpdW",
       "name": "Tripel / Sour",
       "batchNo": 51,
-      "status": "Fermenting",
+      "status": "Conditioning",
       "brewer": "Sklopivo",
       "brewDate": 1771082324208,
       "recipe": {
